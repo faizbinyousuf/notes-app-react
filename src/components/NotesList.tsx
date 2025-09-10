@@ -3,7 +3,7 @@ import NoteItem from "./NoteItem";
 
 function NotesList() {
   return (
-    <div>
+    <div className="overflow-y-auto h-full ">
       {Array(10)
         .fill(0)
         .map((_, index) => (
