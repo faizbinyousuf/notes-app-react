@@ -1,5 +1,6 @@
 import React from "react";
 import NoteItem from "./NoteItem";
+import FloatingActionButton from "./Fab";
 
 function NotesList() {
   return (
@@ -9,6 +10,7 @@ function NotesList() {
         .map((_, index) => (
           <NoteItem key={index} />
         ))}
+      <FloatingActionButton />
     </div>
   );
 }
