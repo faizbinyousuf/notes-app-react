@@ -8,7 +8,7 @@ function SideBar() {
   const [selectedTag, setSelectedTag] = React.useState("Work");
   const tags = ["Work", "Personal", "Important", "Random"];
   return (
-    <div className="lg:flex-1 hidden lg:block bg-white w-full    lg:min-w-[250px] p-4  ">
+    <div className=" lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3  hidden lg:block bg-white w-full   pl-4  ">
       <div className="     hidden lg:block pt-3">
         <img
           src="/notes-logo.svg"
