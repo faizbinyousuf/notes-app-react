@@ -12,7 +12,7 @@ function NotesList() {
           Add Note
         </Button>
         <div className="flex-1 ">
-          {Array(1)
+          {Array(10)
             .fill(0)
             .map((_, index) => (
               <NoteItem key={index} />

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Input } from "./ui/input";
-import { ClockIcon, TagIcon, X } from "lucide-react";
+import { ClockIcon, PlusIcon, TagIcon, X } from "lucide-react";
 import { Label } from "./ui/label";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
@@ -14,6 +14,7 @@ import {
 } from "./ui/command";
 import React from "react";
 import { Badge } from "./ui/badge";
+import { clsx } from "clsx";
 
 function NoteArea() {
   const initialTags = [
@@ -30,6 +31,9 @@ function NoteArea() {
   const [allTags, setAllTags] = React.useState(initialTags);
   const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   const [query, setQuery] = React.useState("");
+  const [isFocused, setIsFocused] = React.useState(false);
+  const [noteText, setNoteText] = React.useState("");
+  const [noteTitle, setNoteTitle] = React.useState("");
 
   const filteredTags = allTags.filter(
     (tag) =>
@@ -58,6 +62,8 @@ function NoteArea() {
           <Input
             type="text"
             placeholder="Enter a title..."
+            value={noteTitle}
+            onChange={(e) => setNoteTitle(e.target.value)}
             style={{ width: "100%", fontSize: "1.5rem" }}
             className="font-bold  h-12   border-2 border-transparent    shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800  "
           />
@@ -87,22 +93,39 @@ function NoteArea() {
             </div>
 
             <Command className=" rounded-md">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center  gap-3 relative">
                 <TagIcon className="size-4 text-gray-500" />
                 <Label className="w-24 text-sm font-medium text-gray-700">
                   Tags
                 </Label>
-
+                {isFocused && filteredTags.length === 0 && (
+                  <button
+                    type="button"
+                    onClick={() => addTag(query)}
+                    className="bg-gray-700 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
+                  >
+                    <PlusIcon className="size-4" />
+                  </button>
+                )}
                 <Input
                   type="text"
                   placeholder="Add tags..."
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
+                  onFocus={() => setIsFocused(true)}
+                  // onBlur={() => setIsFocused(false)}
                   className="text-sm text-gray-400 border-2 border-transparent  shadow-none focus-visible:ring-0 focus-visible:ring-offset-0    focus:border-gray-800   flex-1 "
                 />
               </div>
               {query && (
-                <CommandList className="absolute z-50 w-full mt-9 bg-white border rounded-md shadow-md">
+                <CommandList
+                  className={clsx(
+                    "absolute z-50 w-full mt-9 bg-white border rounded-md shadow-md",
+                    filteredTags.length === 0 && "border-0"
+                  )}
+                >
+                  {/* <CommandEmpty>No results found.</CommandEmpty> */}
+
                   {filteredTags.length > 0 && (
                     <CommandGroup>
                       {filteredTags.map((tag) => (
@@ -132,6 +155,8 @@ function NoteArea() {
           placeholder="Start typing here..."
           minLength={1}
           rows={10}
+          value={noteText}
+          onChange={(e) => setNoteText(e.target.value)}
           className="h-40 flex-1   border-2 border-transparent    shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800"
         />
         <div>
@@ -148,6 +173,13 @@ function NoteArea() {
             className="mt-5 ml-3"
             variant="outline"
             size="lg"
+            onClick={() => {
+              setSelectedTags([]);
+              setQuery("");
+              setNoteText("");
+              setNoteTitle("");
+              // setIsFocused(false);
+            }}
           >
             Cancel
           </Button>

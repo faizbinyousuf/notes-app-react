@@ -19,7 +19,7 @@ function SideBar() {
       <button
         onClick={() => setSelectedOption("allNotes")}
         className={clsx(
-          "hiver:bg-gray-100 hover:bg-gray-200  flex gap-3 items-center text-base w-full mt-8 p-1.5 rounded-sm pl-2",
+          "hiver:bg-gray-100 hover:bg-gray-200  flex gap-3 items-center text-sm w-full mt-8 p-1.5 rounded-sm pl-2",
           selectedOption === "allNotes" && "bg-gray-100"
         )}
       >
@@ -32,7 +32,7 @@ function SideBar() {
       <button
         onClick={() => setSelectedOption("archivedNotes")}
         className={clsx(
-          "hover:bg-gray-200   flex gap-3 items-center text-base w-full mt-1.5 p-1.5 rounded-sm pl-2",
+          "hover:bg-gray-200   flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2",
           selectedOption === "archivedNotes" && "bg-gray-100"
         )}
       >
