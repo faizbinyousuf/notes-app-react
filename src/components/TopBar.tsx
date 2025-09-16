@@ -10,7 +10,7 @@ function TopBar() {
     border border-l-gray-200
     "
     >
-      <h1 className=" text-3xl font-bold ">All Notes</h1>
+      <h1 className=" text-3xl font-bold ">All Tasks</h1>
       <div className="flex w-full max-w-sm items-center gap-2 relative">
         <SearchIcon className="size-4 absolute left-3 " />
         <Input
