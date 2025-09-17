@@ -2,10 +2,12 @@ import { ChevronRight, DownloadIcon, HomeIcon, TagIcon } from "lucide-react";
 import React from "react";
 import { Separator } from "./ui/separator";
 import clsx from "clsx";
+import { useNotes } from "@/context/noteHook";
 
 function SideBar() {
   const [selectedOption, setSelectedOption] = React.useState("allNotes");
   const [selectedTag, setSelectedTag] = React.useState("Work");
+  const { dispatch } = useNotes();
   const tags = ["Work", "Personal", "Important", "Random"];
   return (
     <div className=" lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3  hidden lg:block bg-white w-full   pl-4  ">
@@ -52,7 +54,10 @@ function SideBar() {
               selectedTag === tag && "bg-gray-100"
             )}
             key={tag}
-            onClick={() => setSelectedTag(tag)}
+            onClick={() => {
+              setSelectedTag(tag);
+              dispatch({ type: "FILTER_NOTES_BY_TAG", payload: tag });
+            }}
           >
             <TagIcon className="size-4" />
             {tag}

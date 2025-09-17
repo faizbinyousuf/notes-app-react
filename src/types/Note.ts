@@ -10,6 +10,7 @@ export interface Note {
 export type NoteState = {
   notes: Note[];
   selectedNote: Note | null;
+  isFocused: boolean;
 };
 export type NotesContextType = {
   state: NoteState;
@@ -19,13 +20,16 @@ export type NotesContextType = {
 export type NoteAction =
   | { type: "ADD_NOTE"; payload: Note }
   | { type: "DELETE_NOTE"; payload: string }
-  | { type: "SET_SELECTED_NOTE"; payload: Note | null };
+  | { type: "SET_SELECTED_NOTE"; payload: Note | null }
+  | { type: "UPDATE_NOTE"; payload: Partial<Note> }
+  | { type: "SET_FOCUS"; payload: boolean }
+  | { type: "FILTER_NOTES_BY_TAG"; payload: string };
 export const sampleNotes: Note[] = [
   {
     id: "1",
     title: "Note 1",
     content: "Content of note 1",
-    tags: ["tag1", "tag2"],
+    tags: ["Personal", "Work"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -33,7 +37,7 @@ export const sampleNotes: Note[] = [
     id: "2",
     title: "Note 2",
     content: "Content of note 2",
-    tags: ["tag3", "tag4"],
+    tags: ["lifestyle"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -41,7 +45,7 @@ export const sampleNotes: Note[] = [
     id: "3",
     title: "Note 3",
     content: "Content of note 3",
-    tags: ["tag5", "tag6"],
+    tags: ["Random", "Ideas"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -49,7 +53,7 @@ export const sampleNotes: Note[] = [
     id: "4",
     title: "Note 4",
     content: "Content of note 4",
-    tags: ["tag7", "tag8"],
+    tags: ["shopping"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -57,7 +61,7 @@ export const sampleNotes: Note[] = [
     id: "5",
     title: "Note 5",
     content: "Content of note 5",
-    tags: ["tag9", "tag10"],
+    tags: ["learning", "lifestyle"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -65,7 +69,7 @@ export const sampleNotes: Note[] = [
     id: "6",
     title: "Note 6",
     content: "Content of note 6",
-    tags: ["tag11", "tag12"],
+    tags: ["Planning", "Work"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -73,7 +77,7 @@ export const sampleNotes: Note[] = [
     id: "7",
     title: "Note 7",
     content: "Content of note 7",
-    tags: ["tag13", "tag14"],
+    tags: ["Personal", "Ideas"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },
@@ -81,7 +85,7 @@ export const sampleNotes: Note[] = [
     id: "8",
     title: "Note 8",
     content: "Content of note 8",
-    tags: ["tag15", "tag16"],
+    tags: ["learning", "Work"],
     createdAt: new Date(),
     updatedAt: new Date(),
   },

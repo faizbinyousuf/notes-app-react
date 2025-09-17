@@ -39,6 +39,36 @@ function NoteArea() {
   const [noteText, setNoteText] = React.useState("");
   const [noteTitle, setNoteTitle] = React.useState("");
   const { state, dispatch } = useNotes();
+  const selectedNote = state.selectedNote;
+  const isNoteFocused = state.isFocused;
+  const titleRef = React.useRef<HTMLInputElement>(null);
+  React.useEffect(() => {
+    if (isNoteFocused && titleRef.current) {
+      titleRef.current.focus();
+    }
+  }, [isNoteFocused]);
+
+  React.useEffect(() => {
+    if (selectedNote) {
+      setNoteTitle(selectedNote.title);
+      setNoteText(selectedNote.content);
+      setSelectedTags(selectedNote.tags);
+    }
+  }, [selectedNote]);
+
+  // React.useEffect(() => {
+  //   if (!isFocused) {
+  //     setQuery("");
+  //   }
+  // }, [isFocused]);
+
+  React.useEffect(() => {
+    if (!selectedNote) {
+      setNoteTitle("");
+      setNoteText("");
+      setSelectedTags([]);
+    }
+  }, [selectedNote]);
 
   const filteredTags = allTags.filter(
     (tag) =>
@@ -58,6 +88,17 @@ function NoteArea() {
     setSelectedTags(selectedTags.filter((t) => t !== tag));
     console.log(selectedTags);
   };
+  const formatDate = (date: Date) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Intl.DateTimeFormat("en-US", options).format(new Date(date));
+  };
+
   return (
     <div className="hidden lg:block bg-white  lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-3 w-full border border-gray-200 ">
       {/* Top area */}
@@ -65,6 +106,7 @@ function NoteArea() {
       <div className=" mt-3 bg-white border-b border-gray-200 p-6">
         <div className="  w-full ">
           <Input
+            ref={titleRef}
             type="text"
             placeholder="Enter a title..."
             value={noteTitle}
@@ -150,7 +192,11 @@ function NoteArea() {
             <Label className="w-24 text-sm font-medium text-gray-700">
               Last Edited
             </Label>
-            <span className="text-sm text-gray-500">Not yet saved.</span>
+            <span className="text-sm text-gray-500">
+              {selectedNote
+                ? formatDate(selectedNote.updatedAt)
+                : "Not yet saved."}
+            </span>
           </div>
         </div>
       </div>
@@ -179,11 +225,26 @@ function NoteArea() {
                 createdAt: new Date(),
                 updatedAt: new Date(),
               };
+              if (!selectedNote) {
+                dispatch({
+                  type: "ADD_NOTE",
+                  payload: note,
+                });
 
-              dispatch({
-                type: "ADD_NOTE",
-                payload: note,
-              });
+                dispatch({ type: "SET_SELECTED_NOTE", payload: null });
+              } else {
+                const updatedNote = {
+                  ...selectedNote,
+                  title: noteTitle,
+                  content: noteText,
+                  tags: selectedTags,
+                  createdAt: selectedNote.createdAt,
+                  updatedAt: new Date(),
+                };
+
+                dispatch({ type: "UPDATE_NOTE", payload: { ...updatedNote } });
+                dispatch({ type: "SET_SELECTED_NOTE", payload: null });
+              }
               setSelectedTags([]);
               setQuery("");
               setNoteText("");
@@ -191,7 +252,7 @@ function NoteArea() {
               setIsFocused(false);
             }}
           >
-            Save
+            {selectedNote ? "Update" : "Save"}
           </Button>
           <Button
             type="button"
@@ -204,6 +265,7 @@ function NoteArea() {
               setNoteText("");
               setNoteTitle("");
               // setIsFocused(false);
+              dispatch({ type: "SET_SELECTED_NOTE", payload: null });
             }}
           >
             Cancel
