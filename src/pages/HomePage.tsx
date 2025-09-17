@@ -7,6 +7,7 @@ import SideBar from "@/components/SideBar";
 import TopBar from "@/components/TopBar";
 
 function HomePage() {
+  console.log("HomePage rendered");
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-5 grid-rows-[auto,1fr] bg-orange-100 h-screen w-full">

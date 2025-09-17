@@ -15,8 +15,12 @@ import {
 import React from "react";
 import { Badge } from "./ui/badge";
 import { clsx } from "clsx";
+import { useNotes } from "@/context/noteHook";
+import { v4 as uuidv4 } from "uuid";
+import type { Note } from "@/types/Note";
 
 function NoteArea() {
+  console.log("NoteArea rendered");
   const initialTags = [
     "Work",
     "Planning",
@@ -34,6 +38,7 @@ function NoteArea() {
   const [isFocused, setIsFocused] = React.useState(false);
   const [noteText, setNoteText] = React.useState("");
   const [noteTitle, setNoteTitle] = React.useState("");
+  const { state, dispatch } = useNotes();
 
   const filteredTags = allTags.filter(
     (tag) =>
@@ -102,7 +107,7 @@ function NoteArea() {
                   <button
                     type="button"
                     onClick={() => addTag(query)}
-                    className="bg-gray-700 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
+                    className="bg-blue-600 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
                   >
                     <PlusIcon className="size-4" />
                   </button>
@@ -165,6 +170,26 @@ function NoteArea() {
             className="mt-5 bg-blue-600 hover:bg-blue-800 px-6 "
             variant="default"
             size="lg"
+            onClick={() => {
+              const note: Note = {
+                id: uuidv4(),
+                title: noteTitle,
+                content: noteText,
+                tags: selectedTags,
+                createdAt: new Date(),
+                updatedAt: new Date(),
+              };
+
+              dispatch({
+                type: "ADD_NOTE",
+                payload: note,
+              });
+              setSelectedTags([]);
+              setQuery("");
+              setNoteText("");
+              setNoteTitle("");
+              setIsFocused(false);
+            }}
           >
             Save
           </Button>

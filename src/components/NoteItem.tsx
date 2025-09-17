@@ -1,13 +1,31 @@
+import type { Note } from "@/types/Note";
 import React from "react";
-
-function NoteItem() {
+interface NoteItemProps {
+  note: Note;
+}
+function NoteItem({ note }: NoteItemProps) {
   return (
-    <div className="bg-white p-3 m-2 border-b border-gray grid gap-2">
-      <h2 className="font-bold text-base    ">Title</h2>
-      <span className="text-[.7rem] bg-gray-200 max-w-max px-2 py-0.5 rounded-sm font-normal ">
-        label
-      </span>
-      <p className="text-[.7rem]  text-gray-600 ">03 Sep 2025</p>
+    <div className="bg-white p-2 m-2 border-b border-gray grid gap-2">
+      <h2 className="font-bold text-base    ">{note.title}</h2>
+      {note.tags.length > 0 && (
+        <div className="flex gap-2 flex-wrap">
+          {note.tags.map((tag) => (
+            // <span className="text-[.7rem] bg-gray-200 max-w-max px-2 py-0.5 rounded-sm font-normal ">
+            //   label
+            // </span>
+            <span
+              key={tag}
+              className="text-[.7rem] bg-gray-200 max-w-max px-2 py-0.5 rounded-sm font-normal text-gray-600  p-1 "
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+      <p className="text-sm font-semibold ">{note.content}</p>
+      <p className="text-[.6rem]  text-gray-600 ">
+        {note.createdAt.toLocaleDateString()}
+      </p>
     </div>
   );
 }

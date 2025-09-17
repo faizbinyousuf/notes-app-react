@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { DownloadIcon, Trash2Icon } from "lucide-react";
 
 function NoteOptions() {
+  console.log("NoteOptions rendered");
   return (
     <div className="hidden lg:block bg-white border border-gray-200 lg:col-start-5 lg:col-end-6 lg:row-start-2 lg:row-end-3 w-full   ">
       <div className="flex flex-col gap-4 p-3 mt-3  ">
