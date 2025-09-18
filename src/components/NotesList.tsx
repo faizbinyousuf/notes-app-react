@@ -4,10 +4,12 @@ import NoteItem from "./NoteItem";
 import { Button } from "./ui/button";
 import { type Note } from "@/types/Note";
 import { useNotes } from "@/context/noteHook";
+import { useNavigate } from "react-router-dom";
 
 function NotesList() {
   console.log("NotesList rendered");
   const { state, dispatch } = useNotes();
+  const navigate = useNavigate();
 
   const notes: Note[] = state.notes.filter((note) => !note.isArchived);
   const archivedNotes: Note[] = state.notes.filter((note) => note.isArchived);
@@ -24,7 +26,7 @@ function NotesList() {
           Add Note
         </Button>
       </div>
-      <div className="px-2 pb-24 space-y-3 flex flex-col h-screen">
+      <div className="px-2 pb-24 space-y-3 flex flex-col hsc">
         {notesToDisplay.length === 0 && (
           <p className="text-gray-500 text-center mt-10">No notes available.</p>
         )}
@@ -33,9 +35,12 @@ function NotesList() {
             isSelected={note.id === state.selectedNote?.id}
             key={note.id}
             note={note}
-            onClick={() =>
-              dispatch({ type: "SET_SELECTED_NOTE", payload: note })
-            }
+            onClick={() => {
+              dispatch({ type: "SET_SELECTED_NOTE", payload: note });
+              if (window.innerWidth <= 768) {
+                navigate(`/noteDetail/${note.id}`);
+              }
+            }}
           />
         ))}
       </div>

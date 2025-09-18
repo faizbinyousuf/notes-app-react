@@ -15,7 +15,7 @@ function HomePage() {
         <SideBar />
         <TopBar />
         <NotesList />
-        <NoteArea />
+        <NoteArea className="hidden md:hidden" />
         <NoteOptions />
         <BottomNavigationBar />
       </div>

@@ -18,10 +18,12 @@ import { clsx } from "clsx";
 import { useNotes } from "@/context/noteHook";
 import { v4 as uuidv4 } from "uuid";
 import type { Note } from "@/types/Note";
+import { useNavigate } from "react-router-dom";
 
-function NoteArea() {
+function NoteArea({ className }: { className?: string }) {
   console.log("NoteArea rendered");
   const { state, dispatch } = useNotes();
+  const navigate = useNavigate();
   const [allTags, setAllTags] = React.useState(state.tags);
   const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   const [query, setQuery] = React.useState("");
@@ -92,10 +94,15 @@ function NoteArea() {
   };
 
   return (
-    <div className="hidden lg:block bg-white  lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-3 w-full border border-gray-200 ">
+    <div
+      className={clsx(
+        className,
+        " lg:block bg-white  lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-3 w-full lg:border border-gray-200 "
+      )}
+    >
       {/* Top area */}
 
-      <div className=" mt-3 bg-white border-b border-gray-200 p-6">
+      <div className=" mt-3 bg-white lg:border-b border-gray-200 p-6">
         <div className="  w-full ">
           <Input
             ref={titleRef}
@@ -244,6 +251,10 @@ function NoteArea() {
               setNoteText("");
               setNoteTitle("");
               setIsFocused(false);
+              //on medium screens, go back to the previous page
+              if (window.innerWidth < 1024) {
+                navigate(-1);
+              }
             }}
           >
             {selectedNote ? "Update" : "Save"}
@@ -260,6 +271,10 @@ function NoteArea() {
               setNoteTitle("");
               // setIsFocused(false);
               dispatch({ type: "SET_SELECTED_NOTE", payload: null });
+              //on medium screens, go back to the previous page
+              if (window.innerWidth < 1024) {
+                navigate(-1);
+              }
             }}
           >
             Cancel
