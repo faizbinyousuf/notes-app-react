@@ -21,24 +21,14 @@ import type { Note } from "@/types/Note";
 
 function NoteArea() {
   console.log("NoteArea rendered");
-  const initialTags = [
-    "Work",
-    "Planning",
-    "Personal",
-    "Ideas",
-    "Random",
-    "lifestyle",
-    "shopping",
-    "learning",
-  ];
-
-  const [allTags, setAllTags] = React.useState(initialTags);
+  const { state, dispatch } = useNotes();
+  const [allTags, setAllTags] = React.useState(state.tags);
   const [selectedTags, setSelectedTags] = React.useState<string[]>([]);
   const [query, setQuery] = React.useState("");
   const [isFocused, setIsFocused] = React.useState(false);
   const [noteText, setNoteText] = React.useState("");
   const [noteTitle, setNoteTitle] = React.useState("");
-  const { state, dispatch } = useNotes();
+
   const selectedNote = state.selectedNote;
   const isNoteFocused = state.isFocused;
   const titleRef = React.useRef<HTMLInputElement>(null);
@@ -79,7 +69,9 @@ function NoteArea() {
   const addTag = (tag: string) => {
     if (!selectedTags.includes(tag)) {
       setSelectedTags([...selectedTags, tag]);
-      if (!allTags.includes(tag)) setAllTags([...allTags, tag]); // add new tag
+      if (!allTags.includes(tag)) {
+        setAllTags([...allTags, tag]);
+      }
     }
     setQuery("");
   };
@@ -224,6 +216,7 @@ function NoteArea() {
                 tags: selectedTags,
                 createdAt: new Date(),
                 updatedAt: new Date(),
+                isArchived: selectedNote ? selectedNote.isArchived : false,
               };
               if (!selectedNote) {
                 dispatch({
@@ -240,6 +233,7 @@ function NoteArea() {
                   tags: selectedTags,
                   createdAt: selectedNote.createdAt,
                   updatedAt: new Date(),
+                  isArchived: selectedNote.isArchived,
                 };
 
                 dispatch({ type: "UPDATE_NOTE", payload: { ...updatedNote } });

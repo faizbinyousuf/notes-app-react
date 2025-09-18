@@ -5,12 +5,25 @@ export interface Note {
   tags: string[];
   createdAt: Date;
   updatedAt: Date;
+  isArchived: boolean;
 }
-
+export const initialTags = [
+  "Work",
+  "Planning",
+  "Personal",
+  "Ideas",
+  "Random",
+  "lifestyle",
+  "shopping",
+  "learning",
+];
 export type NoteState = {
   notes: Note[];
+  allNotes: Note[];
   selectedNote: Note | null;
   isFocused: boolean;
+  tags: string[];
+  showArchived: boolean;
 };
 export type NotesContextType = {
   state: NoteState;
@@ -23,7 +36,12 @@ export type NoteAction =
   | { type: "SET_SELECTED_NOTE"; payload: Note | null }
   | { type: "UPDATE_NOTE"; payload: Partial<Note> }
   | { type: "SET_FOCUS"; payload: boolean }
-  | { type: "FILTER_NOTES_BY_TAG"; payload: string };
+  | { type: "FILTER_NOTES_BY_TAG"; payload: string }
+  | { type: "UPDATE_TAGS"; payload: string }
+  | { type: "CLEAR_FILTER_BY_TAGS" }
+  | { type: "ARCHIVE_NOTE"; payload: string }
+  | { type: "SET_SHOW_ARCHIVED"; payload: boolean }
+  | { type: "SEARCH_NOTES"; payload: string };
 export const sampleNotes: Note[] = [
   {
     id: "1",
@@ -32,6 +50,7 @@ export const sampleNotes: Note[] = [
     tags: ["Personal", "Work"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "2",
@@ -40,6 +59,7 @@ export const sampleNotes: Note[] = [
     tags: ["lifestyle"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "3",
@@ -48,6 +68,7 @@ export const sampleNotes: Note[] = [
     tags: ["Random", "Ideas"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "4",
@@ -56,6 +77,7 @@ export const sampleNotes: Note[] = [
     tags: ["shopping"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "5",
@@ -64,6 +86,7 @@ export const sampleNotes: Note[] = [
     tags: ["learning", "lifestyle"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "6",
@@ -72,6 +95,7 @@ export const sampleNotes: Note[] = [
     tags: ["Planning", "Work"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "7",
@@ -80,6 +104,7 @@ export const sampleNotes: Note[] = [
     tags: ["Personal", "Ideas"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: false,
   },
   {
     id: "8",
@@ -88,5 +113,6 @@ export const sampleNotes: Note[] = [
     tags: ["learning", "Work"],
     createdAt: new Date(),
     updatedAt: new Date(),
+    isArchived: true,
   },
 ];
