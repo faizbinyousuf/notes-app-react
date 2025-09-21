@@ -8,6 +8,8 @@ import NoteDetail from "./components/NoteDetail";
 import CreateNote from "./pages/CreateNote";
 import Archived from "./pages/Archived";
 import MainScreen from "./pages/MainScreen";
+import { FontProvider } from "./context/fontProvider";
+import SettingsPage from "./pages/SettingsPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +43,15 @@ const router = createBrowserRouter([
         path: "/archived",
         element: <Archived />,
       },
+      // {
+      //   path: "/settings",
+      //   element: <SettingsPage />,
+      // },
+
+      {
+        path: "*",
+        element: <div>404 NOT FOUND</div>,
+      },
     ],
   },
 ]);
@@ -48,9 +59,11 @@ function App() {
   return (
     <>
       <React.StrictMode>
-        <NotesContextProvider>
-          <RouterProvider router={router} />
-        </NotesContextProvider>
+        <FontProvider>
+          <NotesContextProvider>
+            <RouterProvider router={router} />
+          </NotesContextProvider>
+        </FontProvider>
       </React.StrictMode>
     </>
   );

@@ -10,7 +10,7 @@ function SideBar() {
   const { state, dispatch } = useNotes();
   const tags = state.tags;
   return (
-    <div className=" lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3  hidden lg:block bg-white w-full   px-4  ">
+    <div className="  lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3  hidden lg:block bg-white w-full   px-4  ">
       <div className="     hidden lg:block pt-3">
         <img
           src="/notes-logo.svg"

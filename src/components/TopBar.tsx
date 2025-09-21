@@ -1,14 +1,31 @@
 import React from "react";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { SearchIcon, SettingsIcon } from "lucide-react";
+import { ChevronDown, SearchIcon, SettingsIcon } from "lucide-react";
 import { useNotes } from "@/context/noteHook";
+import { useFont } from "@/context/fontHook";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 function TopBar() {
   console.log("TopBar rendered");
 
   const { state, dispatch } = useNotes();
   const [query, setQuery] = React.useState("");
+  const { font, setFont } = useFont();
+  const fonts = [
+    "Montserrat",
+    "Ubuntu",
+    "Raleway",
+    "Open Sans",
+    "Saira",
+    "SUSE Mono",
+  ];
 
   return (
     <div
@@ -31,9 +48,25 @@ function TopBar() {
           placeholder="Search by title, content or tags..."
           className="text-sm text-gray-400 pl-9 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border  border-gray-300 focus:border-gray-800  "
         />
-        <Button type="button" variant="ghost">
-          <SettingsIcon className="size-6" />
-        </Button>
+
+        <Select
+          value={font}
+          onValueChange={(value) => setFont(value as typeof font)}
+        >
+          <SelectTrigger asChild className="w-[200px]">
+            <Button type="button" variant="ghost" className="justify-between">
+              <ChevronDown className="size-5 mr-2" />
+              <SelectValue placeholder="Select a font" />
+            </Button>
+          </SelectTrigger>
+          <SelectContent>
+            {fonts.map((f) => (
+              <SelectItem key={f} value={f}>
+                {f}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
     </div>
   );
