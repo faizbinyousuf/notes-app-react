@@ -7,77 +7,106 @@ import {
 } from "lucide-react";
 import React from "react";
 import { clsx } from "clsx";
+import Logo from "./Logo";
+import HomePage from "@/pages/HomePage";
+import Archived from "@/pages/Archived";
+import TagsPage from "@/pages/TagsPage";
+import SettingsPage from "@/pages/SettingsPage";
+// import SearchPage from "@/pages/SearchPage";
 
 function BottomNavigationBar() {
   const [activeTab, setActiveTab] = React.useState("home");
+  const renderTab = () => {
+    switch (activeTab) {
+      case "home":
+        return <HomePage />;
+      // case "search":
+      //   return <SearchPage />;
+      case "archived":
+        return <Archived />;
+      case "tags":
+        return <TagsPage />;
+      case "settings":
+        return <SettingsPage />;
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="block lg:hidden  fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-      <div className="grid h-full  grid-cols-5 mx-auto font-medium ">
-        <button
-          onClick={() => setActiveTab("home")}
-          type="button"
-          className={clsx(
-            "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
-            activeTab === "home"
-              ? "text-blue-600  dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
-              : "text-gray-500 dark:text-gray-400"
-          )}
-        >
-          <HomeIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
-          <span className="text-sm   dark:text-gray-400 ">Home</span>
-        </button>
-        <button
-          onClick={() => setActiveTab("search")}
-          type="button"
-          className={clsx(
-            "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
-            activeTab === "search"
-              ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
-              : "text-gray-500 dark:text-gray-400"
-          )}
-        >
-          <SearchIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
-          <span className="text-sm   dark:text-gray-400 ">Search</span>
-        </button>
-        <button
-          type="button"
-          className={clsx(
-            "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
-            activeTab === "archived"
-              ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
-              : "text-gray-500 dark:text-gray-400"
-          )}
-          onClick={() => setActiveTab("archived")}
-        >
-          <DownloadIcon className="w-5 h-5 mb-1  dark:text-gray-400 " />
-          <span className="text-sm   dark:text-gray-400 ">Archived</span>
-        </button>
-        <button
-          onClick={() => setActiveTab("tags")}
-          type="button"
-          className={clsx(
-            "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
-            activeTab === "tags"
-              ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]  "
-              : "text-gray-500 dark:text-gray-400"
-          )}
-        >
-          <LucideTag className="w-5 h-5 mb-1   dark:text-gray-400 " />
-          <span className="text-sm   dark:text-gray-400">Tags</span>
-        </button>
-        <button
-          onClick={() => setActiveTab("settings")}
-          type="button"
-          className={clsx(
-            " inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
-            activeTab === "settings"
-              ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
-              : "text-gray-500 dark:text-gray-400"
-          )}
-        >
-          <SettingsIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
-          <span className="text-sm  dark:text-gray-400">Settings</span>
-        </button>
+    <div>
+      <Logo />
+      {renderTab()}
+      <div className="block lg:hidden  fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+        <div className="grid h-full  grid-cols-4 mx-auto font-medium ">
+          <button
+            onClick={() => setActiveTab("home")}
+            type="button"
+            className={clsx(
+              "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
+              activeTab === "home"
+                ? "text-blue-600  dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
+                : "text-gray-500 dark:text-gray-400"
+            )}
+          >
+            <HomeIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
+            <span className="text-sm   dark:text-gray-400 ">Home</span>
+          </button>
+          {/* <button
+            onClick={() => setActiveTab("search")}
+            type="button"
+            className={clsx(
+              "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
+              activeTab === "search"
+                ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
+                : "text-gray-500 dark:text-gray-400"
+            )}
+          >
+            <SearchIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
+            <span className="text-sm   dark:text-gray-400 ">Search</span>
+          </button> */}
+          <button
+            type="button"
+            className={clsx(
+              "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
+              activeTab === "archived"
+                ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
+                : "text-gray-500 dark:text-gray-400"
+            )}
+            onClick={() => {
+              setActiveTab("archived");
+            }}
+          >
+            <DownloadIcon className="w-5 h-5 mb-1  dark:text-gray-400 " />
+            <span className="text-sm   dark:text-gray-400 ">Archived</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("tags")}
+            type="button"
+            className={clsx(
+              "inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
+              activeTab === "tags"
+                ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]  "
+                : "text-gray-500 dark:text-gray-400"
+            )}
+          >
+            <LucideTag className="w-5 h-5 mb-1   dark:text-gray-400 " />
+            <span className="text-sm   dark:text-gray-400">Tags</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("settings")}
+            type="button"
+            className={clsx(
+              " inline-flex flex-col items-center justify-center px-5   dark:hover:bg-gray-800 group",
+              activeTab === "settings"
+                ? "text-blue-600 dark:text-blue-500 bg-[#E9F1FE] dark:bg-[#172554]"
+                : "text-gray-500 dark:text-gray-400"
+            )}
+          >
+            <SettingsIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
+            <span className="text-sm  dark:text-gray-400">Settings</span>
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -64,6 +64,7 @@ function notesReducer(state: NoteState, action: NoteAction): NoteState {
     case "FILTER_NOTES_BY_TAG": {
       return {
         ...state,
+        selelctedTag: action.payload,
         notes: state.allNotes.filter((note) =>
           note.tags.includes(action.payload)
         ),
@@ -109,6 +110,7 @@ function notesReducer(state: NoteState, action: NoteAction): NoteState {
               tag.toLowerCase().includes(action.payload.toLowerCase())
             )
         ),
+        selelctedTag: null,
       };
 
     default:
@@ -123,6 +125,7 @@ const initialState: NoteState = {
   isFocused: false,
   tags: initialTags,
   showArchived: false,
+  selelctedTag: null,
 };
 
 export const NotesContextProvider = ({

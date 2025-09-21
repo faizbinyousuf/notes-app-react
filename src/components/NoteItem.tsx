@@ -7,12 +7,13 @@ interface NoteItemProps {
   isSelected: boolean;
 }
 function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
+  const isMediumScreen = window.innerWidth <= 768;
   return (
     <div
       onClick={onClick}
       className={clsx(
         " rounded-sm p-2 m-2 border-b border-gray grid gap-2",
-        isSelected
+        isSelected && !isMediumScreen
           ? "border-l-4 border-blue-600  bg-gray-100"
           : "hover:bg-gray-50 bg-white"
       )}

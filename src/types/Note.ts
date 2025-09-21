@@ -24,6 +24,7 @@ export type NoteState = {
   isFocused: boolean;
   tags: string[];
   showArchived: boolean;
+  selelctedTag?: string | null;
 };
 export type NotesContextType = {
   state: NoteState;

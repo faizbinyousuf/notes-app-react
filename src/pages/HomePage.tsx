@@ -11,13 +11,13 @@ function HomePage() {
   return (
     <div>
       <div className="grid grid-cols-1 lg:grid-cols-5 grid-rows-[auto,1fr] bg-white h-screen w-full">
-        <Logo />
+        {/* <Logo /> */}
         <SideBar />
         <TopBar />
         <NotesList />
         <NoteArea className="hidden md:hidden" />
         <NoteOptions />
-        <BottomNavigationBar />
+        {/* <BottomNavigationBar /> */}
       </div>
     </div>
   );
