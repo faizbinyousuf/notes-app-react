@@ -80,6 +80,7 @@ function notesReducer(state: NoteState, action: NoteAction): NoteState {
       return {
         ...state,
         notes: state.allNotes,
+        selelctedTag: null,
       };
     case "ARCHIVE_NOTE":
       return {

@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { useNotes } from "@/context/noteHook";
 import clsx from "clsx";
 import { PlusIcon } from "lucide-react"; // Assuming you have Lucide React installed
 import { useNavigate } from "react-router-dom";
 
 function FloatingActionButton({ hide }: { hide?: boolean }) {
   const navigate = useNavigate();
+  const { dispatch } = useNotes();
   return (
     <Button
       className={clsx(
@@ -13,6 +15,8 @@ function FloatingActionButton({ hide }: { hide?: boolean }) {
       )}
       size="icon" // Makes the button square with padding for the icon
       onClick={() => {
+        dispatch({ type: "SET_FOCUS", payload: true });
+        dispatch({ type: "SET_SELECTED_NOTE", payload: null });
         navigate("/createNote");
       }}
     >

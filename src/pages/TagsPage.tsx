@@ -10,7 +10,6 @@ function TagsPage() {
   const [selectedTag, setSelectedTag] = React.useState<string | null>(
     state.selelctedTag ?? ""
   );
-  React.useEffect(() => {}, []);
 
   return (
     <div className="p-3">

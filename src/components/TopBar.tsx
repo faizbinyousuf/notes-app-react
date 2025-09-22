@@ -11,6 +11,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 function TopBar() {
   console.log("TopBar rendered");
@@ -18,6 +24,7 @@ function TopBar() {
   const { state, dispatch } = useNotes();
   const [query, setQuery] = React.useState("");
   const { font, setFont } = useFont();
+  const [isOpen, setIsOpen] = React.useState(false);
   const fonts = [
     "Montserrat",
     "Ubuntu",
@@ -49,24 +56,43 @@ function TopBar() {
           className="text-sm text-gray-400 pl-9 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border  border-gray-300 focus:border-gray-800  "
         />
 
-        <Select
-          value={font}
-          onValueChange={(value) => setFont(value as typeof font)}
-        >
-          <SelectTrigger asChild className="w-[200px]">
-            <Button type="button" variant="ghost" className="justify-between">
-              <ChevronDown className="size-5 mr-2" />
-              <SelectValue placeholder="Select a font" />
-            </Button>
-          </SelectTrigger>
-          <SelectContent>
-            {fonts.map((f) => (
-              <SelectItem key={f} value={f}>
-                {f}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div className="mr-10 ml-3 mt-1">
+          <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+            <DropdownMenuTrigger>
+              <SettingsIcon className="size-6 mr-2" />
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent className="w-56">
+              <DropdownMenuLabel>Change Font</DropdownMenuLabel>
+              {/* <DropdownMenuSeparator /> */}
+              <Select
+                value={font}
+                onValueChange={(value) => {
+                  setFont(value as typeof font);
+                  setIsOpen(false);
+                }}
+              >
+                <SelectTrigger asChild className="w-full">
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    className="justify-between"
+                  >
+                    <ChevronDown className="size-5 mr-2" />
+                    <SelectValue placeholder="Select a font" />
+                  </Button>
+                </SelectTrigger>
+                <SelectContent>
+                  {fonts.map((f) => (
+                    <SelectItem key={f} value={f}>
+                      {f}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
     </div>
   );
