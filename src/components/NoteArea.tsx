@@ -242,6 +242,15 @@ function NoteArea({ className }: { className?: string }) {
                   updatedAt: new Date(),
                   isArchived: selectedNote.isArchived,
                 };
+                // do nothing if none of the note properties changed
+                if (
+                  updatedNote.title === selectedNote.title &&
+                  updatedNote.content === selectedNote.content &&
+                  updatedNote.tags.length === selectedNote.tags.length
+                ) {
+                  console.log("no changes detected");
+                  return;
+                }
 
                 dispatch({ type: "UPDATE_NOTE", payload: { ...updatedNote } });
                 dispatch({ type: "SET_SELECTED_NOTE", payload: null });
