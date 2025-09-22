@@ -34,7 +34,7 @@ function TagsPage() {
         {tags.map((tag) => (
           <button
             className={clsx(
-              "flex gap-3 ml-1.5 items-center text-sm w-full p-1.5 rounded-sm  hover:bg-gray-200",
+              "flex gap-3 ml-1.5 items-center text-base w-full p-1.5 rounded-sm  hover:bg-gray-200",
               selectedTag === tag && "bg-gray-100"
             )}
             key={tag}

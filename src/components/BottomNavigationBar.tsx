@@ -50,7 +50,9 @@ function BottomNavigationBar() {
             )}
           >
             <HomeIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
-            <span className="text-sm   dark:text-gray-400 ">Home</span>
+            <span className="md:text-sm text-xs   dark:text-gray-400 ">
+              Home
+            </span>
           </button>
           {/* <button
             onClick={() => setActiveTab("search")}
@@ -78,7 +80,9 @@ function BottomNavigationBar() {
             }}
           >
             <DownloadIcon className="w-5 h-5 mb-1  dark:text-gray-400 " />
-            <span className="text-sm   dark:text-gray-400 ">Archived</span>
+            <span className="md:text-sm text-xs    dark:text-gray-400 ">
+              Archived
+            </span>
           </button>
           <button
             onClick={() => setActiveTab("tags")}
@@ -91,7 +95,9 @@ function BottomNavigationBar() {
             )}
           >
             <LucideTag className="w-5 h-5 mb-1   dark:text-gray-400 " />
-            <span className="text-sm   dark:text-gray-400">Tags</span>
+            <span className="md:text-sm text-xs    dark:text-gray-400">
+              Tags
+            </span>
           </button>
           <button
             onClick={() => setActiveTab("settings")}
@@ -104,7 +110,9 @@ function BottomNavigationBar() {
             )}
           >
             <SettingsIcon className="w-5 h-5 mb-1   dark:text-gray-400 " />
-            <span className="text-sm  dark:text-gray-400">Settings</span>
+            <span className="md:text-sm text-xs  dark:text-gray-400">
+              Settings
+            </span>
           </button>
         </div>
       </div>

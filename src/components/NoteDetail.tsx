@@ -23,14 +23,12 @@ import {
 } from "./ui/alert-dialog";
 
 function NoteDetail() {
-  const { id } = useParams();
   const { state, dispatch } = useNotes();
-  const note = state.notes.find((note) => note.id === id);
 
   return (
     <div>
       <Logo />
-      <div className="flex items-center md:mr-10 mt-3  ">
+      <div className="flex items-center mr-4 md:mr-10 mt-3  ">
         <Button
           type="button"
           onClick={() => window.history.back()}
@@ -40,7 +38,7 @@ function NoteDetail() {
           <ChevronLeft className="size-4" />
           <p className="text-xs">Go Back</p>
         </Button>
-        <div className="flex ml-auto space-x-3">
+        <div className="flex ml-auto space-x-6 md:space-x-9">
           <Button
             onClick={() => {
               if (state.selectedNote && !state.selectedNote.isArchived) {

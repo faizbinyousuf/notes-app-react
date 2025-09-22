@@ -50,7 +50,7 @@ function NotesList() {
           className="text-sm text-gray-400 pl-9 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border  border-gray-300 focus:border-gray-800  "
         />
       </div>
-      <div className="px-2 pb-24 lg:pb-10  space-y-3 flex flex-col min-h-screen ">
+      <div className="px-2 pb-52 lg:pb-10  space-y-3 flex flex-col min-h-screen ">
         {notesToDisplay.length === 0 && (
           <p className="text-gray-500 text-center mt-10">No notes available.</p>
         )}

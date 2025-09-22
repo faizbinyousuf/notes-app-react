@@ -35,7 +35,7 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
         </div>
       )}
       <p className="text-sm font-semibold ">{note.content}</p>
-      <p className="text-[.6rem]  text-gray-600 ">
+      <p className="text-xs  text-gray-600 ">
         {note.createdAt.toLocaleDateString()}
       </p>
     </div>
