@@ -3,7 +3,12 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import NoteArea from "./NoteArea";
 import Logo from "./Logo";
-import { ChevronLeft, DownloadIcon, Trash2Icon } from "lucide-react";
+import {
+  ChevronLeft,
+  DownloadIcon,
+  Trash2Icon,
+  UploadIcon,
+} from "lucide-react";
 import { Button } from "./ui/button";
 import {
   AlertDialog,
@@ -38,9 +43,14 @@ function NoteDetail() {
         <div className="flex ml-auto space-x-3">
           <Button
             onClick={() => {
-              if (state.selectedNote) {
+              if (state.selectedNote && !state.selectedNote.isArchived) {
                 dispatch({
                   type: "ARCHIVE_NOTE",
+                  payload: state.selectedNote.id,
+                });
+              } else if (state.selectedNote && state.selectedNote.isArchived) {
+                dispatch({
+                  type: "UNARCHIVE_NOTE",
                   payload: state.selectedNote.id,
                 });
               }
@@ -50,7 +60,11 @@ function NoteDetail() {
             variant={"outline"}
             type="button"
           >
-            <DownloadIcon className="size-4 text-gray-600 " />
+            {state.selectedNote?.isArchived ? (
+              <UploadIcon className="size-4 text-blue-700" />
+            ) : (
+              <DownloadIcon className="size-4 text-gray-700" />
+            )}
           </Button>
           <AlertDialog>
             <AlertDialogTrigger disabled={!state.selectedNote} asChild>

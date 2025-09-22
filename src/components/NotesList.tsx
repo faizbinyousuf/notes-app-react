@@ -54,19 +54,21 @@ function NotesList() {
         {notesToDisplay.length === 0 && (
           <p className="text-gray-500 text-center mt-10">No notes available.</p>
         )}
-        {notesToDisplay.map((note) => (
-          <NoteItem
-            isSelected={note.id === state.selectedNote?.id}
-            key={note.id}
-            note={note}
-            onClick={() => {
-              dispatch({ type: "SET_SELECTED_NOTE", payload: note });
-              if (window.innerWidth <= 768) {
-                navigate(`/noteDetail/${note.id}`);
-              }
-            }}
-          />
-        ))}
+        {notesToDisplay
+          .sort((a, b) => Number(b.createdAt) - Number(a.createdAt))
+          .map((note) => (
+            <NoteItem
+              isSelected={note.id === state.selectedNote?.id}
+              key={note.id}
+              note={note}
+              onClick={() => {
+                dispatch({ type: "SET_SELECTED_NOTE", payload: note });
+                if (window.innerWidth <= 768) {
+                  navigate(`/noteDetail/${note.id}`);
+                }
+              }}
+            />
+          ))}
       </div>
       <FloatingActionButton hide={state.showArchived ? true : false} />
 
