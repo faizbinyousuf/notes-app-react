@@ -62,7 +62,7 @@ function TopBar() {
               <SettingsIcon className="size-6 mr-2" />
             </DropdownMenuTrigger>
 
-            <DropdownMenuContent className="w-56">
+            <DropdownMenuContent className="w-56 mr-3">
               <DropdownMenuLabel>Change Font</DropdownMenuLabel>
               {/* <DropdownMenuSeparator /> */}
               <Select

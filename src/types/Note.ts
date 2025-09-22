@@ -42,7 +42,8 @@ export type NoteAction =
   | { type: "CLEAR_FILTER_BY_TAGS" }
   | { type: "ARCHIVE_NOTE"; payload: string }
   | { type: "SET_SHOW_ARCHIVED"; payload: boolean }
-  | { type: "SEARCH_NOTES"; payload: string };
+  | { type: "SEARCH_NOTES"; payload: string }
+  | { type: "UNARCHIVE_NOTE"; payload: string };
 export const sampleNotes: Note[] = [
   {
     id: "1",

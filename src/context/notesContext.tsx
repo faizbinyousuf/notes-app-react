@@ -114,6 +114,18 @@ function notesReducer(state: NoteState, action: NoteAction): NoteState {
         selelctedTag: null,
       };
 
+    case "UNARCHIVE_NOTE":
+      return {
+        ...state,
+        notes: state.notes.map((note) =>
+          note.id === action.payload ? { ...note, isArchived: false } : note
+        ),
+        allNotes: state.allNotes.map((note) =>
+          note.id === action.payload ? { ...note, isArchived: false } : note
+        ),
+        selectedNote: null,
+      };
+
     default:
       return state;
   }

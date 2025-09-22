@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { DownloadIcon, Trash2Icon } from "lucide-react";
+import { DownloadIcon, Trash2Icon, UploadIcon } from "lucide-react";
 import { useNotes } from "@/context/noteHook";
 import {
   AlertDialog,
@@ -21,10 +21,16 @@ function NoteOptions() {
     <div className="hidden lg:block bg-white border border-gray-200 lg:col-start-5 lg:col-end-6 lg:row-start-2 lg:row-end-3 w-full   ">
       <div className="flex flex-col gap-4 p-3 mt-3  ">
         <Button
+          disabled={!state.selectedNote}
           onClick={() => {
-            if (state.selectedNote) {
+            if (state.selectedNote && !state.selectedNote.isArchived) {
               dispatch({
                 type: "ARCHIVE_NOTE",
+                payload: state.selectedNote.id,
+              });
+            } else if (state.selectedNote && state.selectedNote.isArchived) {
+              dispatch({
+                type: "UNARCHIVE_NOTE",
                 payload: state.selectedNote.id,
               });
             }
@@ -33,8 +39,12 @@ function NoteOptions() {
           variant={"outline"}
           type="button"
         >
-          <DownloadIcon className="size-6 text-gray-600 " />
-          Archive Note
+          {state.selectedNote?.isArchived ? (
+            <UploadIcon className="size-6 text-blue-700" />
+          ) : (
+            <DownloadIcon className="size-6 text-gray-700" />
+          )}
+          {state.selectedNote?.isArchived ? "Unarchive Note" : "Archive Note"}
         </Button>
 
         <AlertDialog>
