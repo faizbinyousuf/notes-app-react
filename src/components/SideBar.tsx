@@ -24,8 +24,8 @@ function SideBar() {
           dispatch({ type: "SET_SHOW_ARCHIVED", payload: false });
         }}
         className={clsx(
-          "  hover:bg-gray-200 dark:hover:bg-gray-800  flex gap-3 items-center text-sm w-full mt-8 p-1.5 rounded-sm pl-2",
-          selectedOption === "allNotes" && "bg-gray-100 dark:bg-gray-800"
+          "  hover:bg-gray-200 dark:hover:bg-brandDark/50   flex gap-3 items-center text-sm w-full mt-8 p-1.5 rounded-sm pl-2",
+          selectedOption === "allNotes" && "bg-gray-100 dark:bg-brandDark"
         )}
       >
         <HomeIcon className="size-4" />
@@ -40,8 +40,8 @@ function SideBar() {
           dispatch({ type: "SET_SHOW_ARCHIVED", payload: true });
         }}
         className={clsx(
-          "hover:bg-gray-200 dark:hover:bg-gray-800   flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2",
-          selectedOption === "archivedNotes" && "bg-gray-100 dark:bg-gray-800"
+          "hover:bg-gray-200 dark:hover:bg-brandDark/50   flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2",
+          selectedOption === "archivedNotes" && "bg-gray-100 dark:bg-brandDark"
         )}
       >
         <DownloadIcon className="size-4" />
@@ -55,7 +55,7 @@ function SideBar() {
         <h3 className="text-base font-[500]  my-2">Tags</h3>
         <button
           className={clsx(
-            "flex gap-1 items-center text-xs  mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer",
+            "flex gap-1 items-center text-xs  mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 dark:hover:bg-brandDark/50 cursor-pointer",
             selectedTag === "" && "hidden"
           )}
           onClick={() => {
@@ -72,8 +72,8 @@ function SideBar() {
         {tags.map((tag) => (
           <button
             className={clsx(
-              "flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 dark:hover:bg-gray-800 ",
-              selectedTag === tag && "bg-gray-100 dark:bg-gray-800"
+              "flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 dark:hover:bg-brandDark/50 ",
+              selectedTag === tag && "bg-gray-100 dark:bg-brandDark"
             )}
             key={tag}
             onClick={() => {

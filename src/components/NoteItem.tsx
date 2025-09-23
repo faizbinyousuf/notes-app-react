@@ -12,10 +12,10 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
     <div
       onClick={onClick}
       className={clsx(
-        " rounded-sm p-2 m-2 border-b border-gray grid gap-2 ",
+        " rounded-sm p-2 m-2 border-b border-gray-600 grid gap-2  ",
         isSelected && !isMediumScreen
           ? "border-l-4 border-blue-200 dark:border-blue-700  bg-gray-200 dark:bg-brandDark"
-          : "hover:bg-gray-50 bg-gray-100 dark:bg-gray-800"
+          : "hover:bg-gray-50 bg-gray-100 dark:bg-gray-900"
       )}
     >
       <h2 className="font-bold text-base dark:text-gray-300   ">
