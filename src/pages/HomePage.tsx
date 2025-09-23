@@ -10,7 +10,7 @@ function HomePage() {
   console.log("HomePage rendered");
   return (
     <div>
-      <div className="grid grid-cols-1 lg:grid-cols-5 grid-rows-[auto,1fr] bg-white h-screen w-full">
+      <div className="grid grid-cols-1 lg:grid-cols-5 grid-rows-[auto,1fr]   h-screen w-full">
         {/* <Logo /> */}
         <SideBar />
         <TopBar />

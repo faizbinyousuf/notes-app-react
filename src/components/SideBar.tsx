@@ -10,12 +10,12 @@ function SideBar() {
   const { state, dispatch } = useNotes();
   const tags = state.tags;
   return (
-    <div className="  lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3  hidden lg:block bg-white w-full   px-4  ">
+    <div className="  lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3  hidden lg:block   w-full   px-4  ">
       <div className="     hidden lg:block pt-3">
         <img
           src="/notes-logo.svg"
           alt="logo"
-          className="  object-fill    h-[33px]   "
+          className="  object-fill    h-[33px] dark:invert  "
         />
       </div>
       <button
@@ -24,8 +24,8 @@ function SideBar() {
           dispatch({ type: "SET_SHOW_ARCHIVED", payload: false });
         }}
         className={clsx(
-          "hiver:bg-gray-100 hover:bg-gray-200  flex gap-3 items-center text-sm w-full mt-8 p-1.5 rounded-sm pl-2",
-          selectedOption === "allNotes" && "bg-gray-100"
+          "  hover:bg-gray-200 dark:hover:bg-gray-800  flex gap-3 items-center text-sm w-full mt-8 p-1.5 rounded-sm pl-2",
+          selectedOption === "allNotes" && "bg-gray-100 dark:bg-gray-800"
         )}
       >
         <HomeIcon className="size-4" />
@@ -40,8 +40,8 @@ function SideBar() {
           dispatch({ type: "SET_SHOW_ARCHIVED", payload: true });
         }}
         className={clsx(
-          "hover:bg-gray-200   flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2",
-          selectedOption === "archivedNotes" && "bg-gray-100"
+          "hover:bg-gray-200 dark:hover:bg-gray-800   flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2",
+          selectedOption === "archivedNotes" && "bg-gray-100 dark:bg-gray-800"
         )}
       >
         <DownloadIcon className="size-4" />
@@ -50,12 +50,12 @@ function SideBar() {
           <ChevronRight className="size-3 ml-auto" />
         )}
       </button>
-      <Separator orientation="horizontal" className="bg-gray-200  mt-5 " />
+      <Separator orientation="horizontal" className="  mt-5 " />
       <div className="flex justify-between items-center">
         <h3 className="text-base font-[500]  my-2">Tags</h3>
         <button
           className={clsx(
-            "flex gap-1 items-center text-xs  mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 cursor-pointer",
+            "flex gap-1 items-center text-xs  mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 dark:hover:bg-gray-800 cursor-pointer",
             selectedTag === "" && "hidden"
           )}
           onClick={() => {
@@ -72,8 +72,8 @@ function SideBar() {
         {tags.map((tag) => (
           <button
             className={clsx(
-              "flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200",
-              selectedTag === tag && "bg-gray-100"
+              "flex gap-3 items-center text-sm w-full mt-1.5 p-1.5 rounded-sm pl-2 hover:bg-gray-200 dark:hover:bg-gray-800 ",
+              selectedTag === tag && "bg-gray-100 dark:bg-gray-800"
             )}
             key={tag}
             onClick={() => {

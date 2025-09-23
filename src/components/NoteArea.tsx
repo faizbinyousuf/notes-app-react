@@ -97,12 +97,12 @@ function NoteArea({ className }: { className?: string }) {
     <div
       className={clsx(
         className,
-        " lg:block bg-white  lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-3 w-full lg:border border-gray-200 "
+        " lg:block   lg:col-start-3 lg:col-end-5 lg:row-start-2 lg:row-end-3 w-full lg:border border-gray-200 dark:border-gray-700 "
       )}
     >
       {/* Top area */}
 
-      <div className=" mt-3 bg-white lg:border-b border-gray-200 p-6">
+      <div className=" mt-3   lg:border-b border-gray-200 dark:border-gray-700 p-6">
         <div className="  w-full ">
           <Input
             ref={titleRef}
@@ -111,7 +111,7 @@ function NoteArea({ className }: { className?: string }) {
             value={noteTitle}
             onChange={(e) => setNoteTitle(e.target.value)}
             style={{ width: "100%", fontSize: "1.5rem" }}
-            className="font-bold  h-12   border-2 border-transparent    shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800  "
+            className="font-bold  h-12   border-2 border-transparent dark:border-gray-700   shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800  "
           />
         </div>
         <div className="space-y-4 mt-5  ">
@@ -130,7 +130,7 @@ function NoteArea({ className }: { className?: string }) {
                       e.stopPropagation();
                       removeTag(tag);
                     }}
-                    className="ml-1 rounded hover:bg-gray-200 p-0.5"
+                    className="ml-1 rounded hover:bg-gray-200 dark:hover:bg-brandDark p-0.5"
                   >
                     <X className="h-3 w-3 pointer-events-none" />
                   </button>
@@ -139,7 +139,7 @@ function NoteArea({ className }: { className?: string }) {
             </div>
 
             <Command className=" rounded-md">
-              <div className="flex items-center  gap-3 relative">
+              <div className="flex items-center gap-3 relative bg-white dark:bg-[#121212]">
                 <TagIcon className="size-4 text-gray-500" />
                 <Label className="w-24 text-sm font-medium text-gray-700">
                   Tags
@@ -148,7 +148,7 @@ function NoteArea({ className }: { className?: string }) {
                   <button
                     type="button"
                     onClick={() => addTag(query)}
-                    className="bg-blue-600 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
+                    className="bg-blue-600 dark:bg-blue-900 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
                   >
                     <PlusIcon className="size-4" />
                   </button>
@@ -160,13 +160,13 @@ function NoteArea({ className }: { className?: string }) {
                   onChange={(e) => setQuery(e.target.value)}
                   onFocus={() => setIsFocused(true)}
                   // onBlur={() => setIsFocused(false)}
-                  className="text-sm text-gray-400 border-2 border-transparent  shadow-none focus-visible:ring-0 focus-visible:ring-offset-0    focus:border-gray-800   flex-1 "
+                  className="text-sm text-gray-400 border-2 border-transparent dark:border-gray-700 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0    focus:border-gray-800   flex-1 "
                 />
               </div>
               {query && (
                 <CommandList
                   className={clsx(
-                    "absolute z-50 w-full mt-9 bg-white border rounded-md shadow-md",
+                    "absolute z-50 w-full mt-9 bg-white dark:bg-gray-800 border rounded-md shadow-md",
                     filteredTags.length === 0 && "border-0"
                   )}
                 >
@@ -200,19 +200,19 @@ function NoteArea({ className }: { className?: string }) {
         </div>
       </div>
       {/* Input area */}
-      <div className="p-5 border-b border-gray-200 ">
+      <div className="p-5 border-b border-gray-200 dark:border-gray-700 ">
         <Textarea
           placeholder="Start typing here..."
           minLength={1}
           rows={10}
           value={noteText}
           onChange={(e) => setNoteText(e.target.value)}
-          className="h-40 flex-1   border-2 border-transparent    shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800"
+          className="h-40 flex-1   border-2 border-transparent dark:border-gray-700    shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800"
         />
         <div>
           <Button
             type="button"
-            className="mt-5 bg-blue-600 hover:bg-blue-800 px-6 "
+            className="mt-5 bg-blue-600 dark:bg-blue-900  hover:bg-blue-800 dark:hover:bg-blue-700 px-6 "
             variant="default"
             size="lg"
             onClick={() => {

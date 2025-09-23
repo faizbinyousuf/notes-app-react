@@ -10,6 +10,7 @@ import Archived from "./pages/Archived";
 import MainScreen from "./pages/MainScreen";
 import { FontProvider } from "./context/fontProvider";
 import SettingsPage from "./pages/SettingsPage";
+import { ThemeProvider } from "./context/themeProvider";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,11 +60,13 @@ function App() {
   return (
     <>
       <React.StrictMode>
-        <FontProvider>
-          <NotesContextProvider>
-            <RouterProvider router={router} />
-          </NotesContextProvider>
-        </FontProvider>
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme-2">
+          <FontProvider>
+            <NotesContextProvider>
+              <RouterProvider router={router} />
+            </NotesContextProvider>
+          </FontProvider>
+        </ThemeProvider>
       </React.StrictMode>
     </>
   );

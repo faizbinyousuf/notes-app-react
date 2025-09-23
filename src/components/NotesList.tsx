@@ -1,4 +1,4 @@
-import { PlusIcon, SearchIcon, SettingsIcon } from "lucide-react";
+import { PlusIcon, SearchIcon } from "lucide-react";
 import FloatingActionButton from "./Fab";
 import NoteItem from "./NoteItem";
 import { Button } from "./ui/button";
@@ -27,12 +27,12 @@ function NotesList() {
   const notesToDisplay = state.showArchived ? archivedNotes : notes;
 
   return (
-    <div className="bg-white overflow-y-auto [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-gray-300  w-full  xl:px-4 lg:px-1   lg:border border-gray-200 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3  ">
+    <div className="   overflow-y-auto [&::-webkit-scrollbar]:w-[3px] [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-thumb]:bg-gray-700  w-full  xl:px-4 lg:px-1   lg:border border-gray-200 dark:border-gray-700 lg:col-start-2 lg:col-end-3 lg:row-start-2 lg:row-end-3  ">
       <div
         onClick={() => dispatch({ type: "SET_FOCUS", payload: true })}
-        className="sticky top-0 z-50 bg-white py-3 px-3 hidden lg:block"
+        className="sticky bg-white dark:bg-[#121212] top-0 z-50   py-3 px-3 hidden lg:block"
       >
-        <Button className=" bg-blue-600 rounded-sm w-full text-white hover:bg-blue-800">
+        <Button className=" bg-blue-600 dark:bg-blue-900 rounded-sm w-full text-white hover:bg-blue-800 dark:hover:bg-blue-700">
           <PlusIcon className="" />
           Add Note
         </Button>
@@ -47,7 +47,7 @@ function NotesList() {
             dispatch({ type: "SEARCH_NOTES", payload: e.target.value });
           }}
           placeholder="Search by title, content or tags..."
-          className="text-sm text-gray-400 pl-9 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border  border-gray-300 focus:border-gray-800  "
+          className="text-sm text-gray-400 pl-9 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0 border  border-gray-300 dark:border-gray-700 focus:border-gray-800  "
         />
       </div>
       <div className="px-2 pb-52 lg:pb-10  space-y-3 flex flex-col min-h-screen ">

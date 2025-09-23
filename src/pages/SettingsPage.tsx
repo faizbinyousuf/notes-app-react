@@ -8,6 +8,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ModeToggle } from "@/components/themeToggle";
 
 export function FontSelectorNormal() {
   const { font, setFont } = useFont();
@@ -81,6 +82,10 @@ function SettingsPage() {
         {/* dropdown to changes font */}
         {/* <Button variant="outline">Change Font</Button> */}
         <FontSelector />
+        <div className="flex gap-5 items-center mt-3">
+          <h1 className="text-xl font-bold">Change Theme</h1>
+          <ModeToggle />
+        </div>
       </div>
     </div>
   );

@@ -12,13 +12,15 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
     <div
       onClick={onClick}
       className={clsx(
-        " rounded-sm p-2 m-2 border-b border-gray grid gap-2",
+        " rounded-sm p-2 m-2 border-b border-gray grid gap-2 ",
         isSelected && !isMediumScreen
-          ? "border-l-4 border-blue-200  bg-gray-100"
-          : "hover:bg-gray-50 bg-white"
+          ? "border-l-4 border-blue-200 dark:border-blue-700  bg-gray-200 dark:bg-brandDark"
+          : "hover:bg-gray-50 bg-gray-100 dark:bg-gray-800"
       )}
     >
-      <h2 className="font-bold text-base    ">{note.title}</h2>
+      <h2 className="font-bold text-base dark:text-gray-300   ">
+        {note.title}
+      </h2>
       {note.tags.length > 0 && (
         <div className="flex gap-2 flex-wrap">
           {note.tags.map((tag) => (
@@ -27,15 +29,15 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
             // </span>
             <span
               key={tag}
-              className="text-[.7rem] bg-gray-200 max-w-max px-2 py-0.5 rounded-sm font-normal text-gray-600  p-1 "
+              className="text-[.7rem] bg-gray-200 max-w-max px-2 py-0.5 rounded-sm font-normal text-gray-600 dark:text-gray-400  p-1 "
             >
               {tag}
             </span>
           ))}
         </div>
       )}
-      <p className="text-sm font-semibold ">{note.content}</p>
-      <p className="text-xs  text-gray-600 ">
+      <p className="text-sm font-semibold dark:text-gray-300">{note.content}</p>
+      <p className="text-xs  text-gray-600 dark:text-gray-400 ">
         {note.createdAt.toLocaleDateString()}
       </p>
     </div>

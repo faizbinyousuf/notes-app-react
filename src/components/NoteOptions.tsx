@@ -18,7 +18,7 @@ function NoteOptions() {
   const { state, dispatch } = useNotes();
   console.log("NoteOptions rendered");
   return (
-    <div className="hidden lg:block bg-white border border-gray-200 lg:col-start-5 lg:col-end-6 lg:row-start-2 lg:row-end-3 w-full   ">
+    <div className="hidden lg:block   border border-gray-200 dark:border-gray-700 lg:col-start-5 lg:col-end-6 lg:row-start-2 lg:row-end-3 w-full   ">
       <div className="flex flex-col gap-4 p-3 mt-3  ">
         <Button
           disabled={!state.selectedNote}
@@ -35,14 +35,14 @@ function NoteOptions() {
               });
             }
           }}
-          className="flex justify-start items-center font-normal py-5"
+          className="flex justify-start items-center font-normal py-5   dark:bg-gray-900 dark:hover:bg-gray-800"
           variant={"outline"}
           type="button"
         >
           {state.selectedNote?.isArchived ? (
-            <UploadIcon className="size-6 text-blue-700" />
+            <UploadIcon className="size-6 text-blue-700 dark:text-blue-900" />
           ) : (
-            <DownloadIcon className="size-6 text-gray-700" />
+            <DownloadIcon className="size-6 text-gray-700 dark:text-gray-400" />
           )}
           {state.selectedNote?.isArchived ? "Unarchive Note" : "Archive Note"}
         </Button>
@@ -50,7 +50,7 @@ function NoteOptions() {
         <AlertDialog>
           <AlertDialogTrigger disabled={!state.selectedNote} asChild>
             <Button
-              className="flex justify-start font-normal items-center text-rose-700  py-5"
+              className="flex justify-start font-normal items-center text-rose-700  py-5 dark:bg-gray-900 dark:hover:bg-gray-800"
               variant={"outline"}
               type="button"
             >
