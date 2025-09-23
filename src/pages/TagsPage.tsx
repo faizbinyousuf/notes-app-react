@@ -12,7 +12,7 @@ function TagsPage() {
   );
 
   return (
-    <div className="p-3">
+    <div className="p-3 mt-16">
       <div className="grid gap-2 font-normal">
         <div className="flex justify-between items-center">
           <h3 className="text-base font-[500]  my-2">Tags</h3>

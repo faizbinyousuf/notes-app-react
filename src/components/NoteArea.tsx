@@ -212,7 +212,7 @@ function NoteArea({ className }: { className?: string }) {
         <div>
           <Button
             type="button"
-            className="mt-5 bg-blue-600 dark:bg-blue-900  hover:bg-blue-800 dark:hover:bg-blue-700 px-6 "
+            className="mt-5 bg-blue-600 dark:bg-blue-900  hover:bg-blue-800 dark:hover:bg-blue-700 px-6 dark:text-gray-300 "
             variant="default"
             size="lg"
             onClick={() => {

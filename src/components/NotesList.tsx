@@ -37,7 +37,7 @@ function NotesList() {
           Add Note
         </Button>
       </div>
-      <div className="lg:hidden flex w-full items-center gap-2 relative px-5 mt-5">
+      <div className="lg:hidden flex w-full items-center gap-2 relative px-5 mt-20 mb-2">
         <SearchIcon className="size-4 absolute left-8 " />
         <Input
           type="search"

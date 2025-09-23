@@ -15,7 +15,7 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
         " rounded-sm p-2 m-2 border-b border-gray-600 grid gap-2  ",
         isSelected && !isMediumScreen
           ? "border-l-4 border-blue-200 dark:border-blue-700  bg-gray-200 dark:bg-brandDark"
-          : "hover:bg-gray-50 bg-gray-100 dark:bg-gray-900"
+          : "hover:bg-gray-50 bg-gray-100 dark:bg-gray-700"
       )}
     >
       <h2 className="font-bold text-base dark:text-gray-300   ">
@@ -29,7 +29,7 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
             // </span>
             <span
               key={tag}
-              className="text-[.7rem] bg-gray-200 max-w-max px-2 py-0.5 rounded-sm font-normal text-gray-600 dark:text-gray-400  p-1 "
+              className="text-[.7rem] bg-gray-200 dark:bg-gray-600 max-w-max px-2 py-0.5 rounded-sm font-normal text-gray-600 dark:text-gray-400  p-1 "
             >
               {tag}
             </span>

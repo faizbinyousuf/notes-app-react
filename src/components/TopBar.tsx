@@ -47,7 +47,7 @@ function TopBar() {
       <div className="ml-auto mr-5">
         <ModeToggle />
       </div>
-      <div className="flex w-full max-w-sm items-center gap-2 relative">
+      <div className="flex w-full max-w-sm items-center gap-2 relative ">
         <SearchIcon className="size-4 absolute left-3 " />
         <Input
           type="search"

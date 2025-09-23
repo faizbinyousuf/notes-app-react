@@ -10,7 +10,7 @@ function FloatingActionButton({ hide }: { hide?: boolean }) {
   return (
     <Button
       className={clsx(
-        "lg:hidden fixed bottom-20 right-4 rounded-full p-7 shadow-lg z-50 bg-blue-600",
+        "lg:hidden fixed bottom-20 right-4 rounded-full p-7 shadow-lg z-50 bg-blue-600 dark:bg-brandDark dark:text-gray-200",
         hide ? "hidden" : "flex"
       )}
       size="icon" // Makes the button square with padding for the icon

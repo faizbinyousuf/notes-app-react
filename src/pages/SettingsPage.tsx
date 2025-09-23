@@ -51,7 +51,7 @@ export function FontSelector() {
   ];
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 mt-5">
       <h3 className="text-lg font-semibold">Current Font: {font}</h3>
 
       <Select

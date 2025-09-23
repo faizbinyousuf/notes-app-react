@@ -28,8 +28,10 @@ function BottomNavigationBar() {
   };
 
   return (
-    <div>
-      <Logo />
+    <>
+      <div className="bg-red-100 fixed top-0 left-0 z-50 w-full ">
+        <Logo />
+      </div>
       {renderTab()}
       <div className="block lg:hidden  fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
         <div className="grid h-full  grid-cols-4 mx-auto font-medium ">
@@ -110,7 +112,7 @@ function BottomNavigationBar() {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
