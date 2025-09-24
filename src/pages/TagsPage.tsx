@@ -35,7 +35,7 @@ function TagsPage() {
           <button
             className={clsx(
               "flex gap-3 ml-1.5 items-center text-base w-full p-1.5 rounded-sm  hover:bg-gray-200",
-              selectedTag === tag && "bg-gray-100 dark:bg-gray-900"
+              selectedTag === tag && "bg-gray-100 dark:bg-gray-700"
             )}
             key={tag}
             onClick={() => {

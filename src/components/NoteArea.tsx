@@ -130,7 +130,7 @@ function NoteArea({ className }: { className?: string }) {
                 <Badge
                   key={tag}
                   variant="secondary"
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 bg-gray-200 dark:bg-gray-600 text-gray-600 dark:text-gray-400"
                 >
                   {tag}
                   <button
@@ -187,7 +187,11 @@ function NoteArea({ className }: { className?: string }) {
                     {filteredTags.length > 0 && (
                       <CommandGroup>
                         {filteredTags.map((tag) => (
-                          <CommandItem key={tag} onSelect={() => addTag(tag)}>
+                          <CommandItem
+                            className="  hover:bg-gray-100 dark:hover:bg-gray-700  "
+                            key={tag}
+                            onSelect={() => addTag(tag)}
+                          >
                             {tag}
                           </CommandItem>
                         ))}
