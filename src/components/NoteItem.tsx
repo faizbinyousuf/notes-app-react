@@ -18,7 +18,7 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
           : "hover:bg-gray-50 bg-gray-100 dark:bg-gray-700"
       )}
     >
-      <h2 className="font-bold text-base dark:text-gray-300   ">
+      <h2 className="font-bold text-base text-gray-800 dark:text-gray-300   ">
         {note.title}
       </h2>
       {note.tags.length > 0 && (
@@ -36,7 +36,9 @@ function NoteItem({ note, onClick, isSelected }: NoteItemProps) {
           ))}
         </div>
       )}
-      <p className="text-sm font-semibold dark:text-gray-300">{note.content}</p>
+      <p className="text-sm font-semibold text-gray-800 dark:text-gray-300">
+        {note.content}
+      </p>
       <p className="text-xs  text-gray-600 dark:text-gray-400 ">
         {note.createdAt.toLocaleDateString()}
       </p>
