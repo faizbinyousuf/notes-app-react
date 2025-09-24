@@ -34,6 +34,15 @@ function NoteArea({ className }: { className?: string }) {
   const selectedNote = state.selectedNote;
   const isNoteFocused = state.isFocused;
   const titleRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [inputWidth, setInputWidth] = React.useState<number>();
+
+  React.useEffect(() => {
+    if (inputRef.current) {
+      setInputWidth(inputRef.current.offsetWidth);
+    }
+  }, [query]);
+
   React.useEffect(() => {
     if (isNoteFocused && titleRef.current) {
       titleRef.current.focus();
@@ -114,7 +123,7 @@ function NoteArea({ className }: { className?: string }) {
             className="font-bold  h-12   border-2 border-transparent dark:border-gray-700   shadow-none focus-visible:ring-0 focus-visible:ring-offset-0   focus:border-gray-800  "
           />
         </div>
-        <div className="space-y-4 mt-5  ">
+        <div className="space-y-4 mt-5    ">
           <div className="flex-1 relative    ">
             <div className="flex flex-wrap gap-2 mb-1 ">
               {selectedTags.map((tag) => (
@@ -139,50 +148,54 @@ function NoteArea({ className }: { className?: string }) {
             </div>
 
             <Command className=" rounded-md">
-              <div className="flex items-center gap-3 relative bg-white dark:bg-[#121212]">
-                <TagIcon className="size-4 text-gray-500" />
-                <Label className="w-24 text-sm font-medium text-gray-700">
-                  Tags
-                </Label>
-                {isFocused && filteredTags.length === 0 && (
-                  <button
-                    type="button"
-                    onClick={() => addTag(query)}
-                    className="bg-blue-600 dark:bg-blue-900 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
+              <div>
+                <div className="flex items-center gap-3 relative   dark:bg-[#121212]">
+                  <TagIcon className="size-4 text-gray-500" />
+                  <Label className="w-24 text-sm font-medium text-gray-700">
+                    Tags
+                  </Label>
+                  {isFocused && filteredTags.length === 0 && (
+                    <button
+                      type="button"
+                      onClick={() => addTag(query)}
+                      className="bg-blue-600 dark:bg-blue-900 text-sm text-white absolute right-0 top-0 p-2 px-4 font-bold h-full"
+                    >
+                      <PlusIcon className="size-4" />
+                    </button>
+                  )}
+                  <Input
+                    type="text"
+                    id="tags"
+                    ref={inputRef}
+                    placeholder="Add tags..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onFocus={() => setIsFocused(true)}
+                    // onBlur={() => setIsFocused(false)}
+                    className="text-sm w-full   text-gray-400 border-2 border-transparent dark:border-gray-700 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0    focus:border-gray-800   flex-1 "
+                  />
+                </div>
+                {query && (
+                  <CommandList
+                    style={{ width: inputWidth }}
+                    className={clsx(
+                      "absolute right-0 top-full bg-white dark:bg-gray-800 border rounded-md shadow-md",
+                      filteredTags.length === 0 && "border-0"
+                    )}
                   >
-                    <PlusIcon className="size-4" />
-                  </button>
+                    {/* <CommandEmpty>No results found.</CommandEmpty> */}
+                    {filteredTags.length > 0 && (
+                      <CommandGroup>
+                        {filteredTags.map((tag) => (
+                          <CommandItem key={tag} onSelect={() => addTag(tag)}>
+                            {tag}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    )}
+                  </CommandList>
                 )}
-                <Input
-                  type="text"
-                  placeholder="Add tags..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  onFocus={() => setIsFocused(true)}
-                  // onBlur={() => setIsFocused(false)}
-                  className="text-sm text-gray-400 border-2 border-transparent dark:border-gray-700 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0    focus:border-gray-800   flex-1 "
-                />
               </div>
-              {query && (
-                <CommandList
-                  className={clsx(
-                    "absolute z-50 w-full mt-9 bg-white dark:bg-gray-800 border rounded-md shadow-md",
-                    filteredTags.length === 0 && "border-0"
-                  )}
-                >
-                  {/* <CommandEmpty>No results found.</CommandEmpty> */}
-
-                  {filteredTags.length > 0 && (
-                    <CommandGroup>
-                      {filteredTags.map((tag) => (
-                        <CommandItem key={tag} onSelect={() => addTag(tag)}>
-                          {tag}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  )}
-                </CommandList>
-              )}
             </Command>
           </div>
 
